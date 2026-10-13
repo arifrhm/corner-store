@@ -1,6 +1,6 @@
 ---
 type: requirement-spec
-project: RWA DEX (Giwa) · corner-store
+project: RWA DEX · corner-store
 element-id: E-03
 element-name: Bad Actor Disqualification (부적격자(bad actor) 배제 / Rule 506(d))
 status: "v0.1 (2026-07-28) — 2부 구성. 컨트랙트 미구현(target 명세). 법적 실질은 보경 walkthrough."

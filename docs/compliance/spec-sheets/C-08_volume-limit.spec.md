@@ -1,6 +1,6 @@
 ---
 type: requirement-spec
-project: RWA DEX (Giwa) · corner-store
+project: RWA DEX · corner-store
 element-id: C-08
 element-name: Volume Limit (물량 한도 · Rule 144(e))
 status: v0.1 (2026-07-22) — 신규 부품. walkthrough 부재로 제1부 법리를 본 명세에서 저술함. 법률 검토(보경) 필요.

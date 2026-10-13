@@ -1,6 +1,6 @@
 ---
 type: requirement-spec
-project: RWA DEX (Giwa) · corner-store
+project: RWA DEX · corner-store
 element-id: B-04
 element-name: Engine Selection (엔진 선택)
 status: v1.0 (2026-07-22) — 보경 walkthrough 기반. Part II는 실장 컨트랙트(EngineSelection.sol) 기준.

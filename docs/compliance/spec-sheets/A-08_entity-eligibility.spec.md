@@ -1,6 +1,6 @@
 ---
 type: requirement-spec
-project: RWA DEX (Giwa) · corner-store
+project: RWA DEX · corner-store
 element-id: A-08
 element-name: Entity Eligibility (법인 자격 산정 · 매수인 측)
 status: v1.0 (2026-07-22) — 보경 walkthrough 기반. Part II는 실장 컨트랙트(EntityEligibility.sol) 기준.

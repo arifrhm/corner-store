@@ -19,7 +19,7 @@ Anvil, demo deployment, RFQ backend, Operator API/dashboard와 Deployment Studio
 
 - production credential, hosted RPC, external TA/KYC 또는 custody 연결
 - reference 서비스의 production hardening 주장
-- existing non-Docker local Anvil/GIWA flow 변경
+- existing non-Docker local Anvil/testnet flow 변경
 - Docker/Foundry/Node upstream source의 vendoring
 
 ## Verification

@@ -90,8 +90,8 @@ the deployment artifact or repository config.
 
 The optional investor-B flag changes only that wallet's acquisition clock. It
 creates a deterministic Sell rejection with an onchain-derived availability
-time while leaving the existing GIWA and default public-testnet fixture
-behavior unchanged.
+time while leaving the default public-testnet fixture behavior
+unchanged.
 
 ### Judge-facing terminology contract
 
@@ -304,15 +304,15 @@ scripts/deploy-testnet-rfq.sh \
   --verify
 ```
 
-GIWA Sepolia uses Blockscout and requires its official verifier endpoint:
+Blockscout-based explorers require the network's official verifier endpoint:
 
 ```sh
-export BLOCKSCOUT_API_URL=https://sepolia-explorer.giwa.io/api
+export BLOCKSCOUT_API_URL=<blockscout-api-url>
 
 scripts/deploy-testnet-rfq.sh \
   --rpc-url "$RPC_URL" \
   --chain-id "$CHAIN_ID" \
-  --account corner-store-giwa \
+  --account corner-store-testnet \
   --broadcast \
   --verify \
   --verifier blockscout \

@@ -2,7 +2,7 @@
 type: recipe-requirement-spec
 recipe-id: R3
 recipe-name: ICA §3(c)(7) Fund
-project: RWA DEX (Giwa) · corner-store
+project: RWA DEX · corner-store
 status: v2.0 (2026-07-28) — 2부 구성(제1부 법률논증 산문 + 제2부 구현명세). Part II는 실장 컨트랙트(Fund3c7Recipe.sol · BuidlLikeFundRecipe.sol) 기준.
 substance-sot: "승준 recipe walkthrough — R3_ICA-3c7-Fund.md v1.0 (2026-06-17, 조문별 삼단논법). 보경 recipe 검토본 없음 — 법률 검토 필요."
 implements: "src/compliance/recipes/Fund3c7Recipe.sol (recipeId 2, {A-13}, fund-bit gated) · BuidlLikeFundRecipe.sol (recipeId 3, {A-13, BUIDL-MIN}, fund-bit gated)."

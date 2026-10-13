@@ -28,7 +28,7 @@
 | [`product-specs/production-rfq-policy.md`](./product-specs/production-rfq-policy.md) | production RFQ 운영·구현 계약 | Current |
 | [`operations/incident-response.md`](./operations/incident-response.md) | 사고 대응·복구 runbook | Current |
 | [`operations/element-emergency-replacement.md`](./operations/element-emergency-replacement.md) | immutable Element 긴급 교체 runbook | Current |
-| [`operations/giwa-chain-semantics.md`](./operations/giwa-chain-semantics.md) | GIWA chain 확정 단계·출금·escape hatch 운영 semantics | Current |
+| [`operations/op-stack-chain-semantics.md`](./operations/op-stack-chain-semantics.md) | OP Stack L2 확정 단계·출금·escape hatch 운영 semantics | Current |
 | [`security.md`](./security.md)                       | 보안 규칙                     | Current    |
 | [`rfq-threat-model.md`](./rfq-threat-model.md)       | RFQ venue 위협 모델           | Current    |
 | [`MVP.md`](./MVP.md)                                 | 초기 AMM 중심 설계 기록       | Superseded |

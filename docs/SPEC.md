@@ -21,7 +21,7 @@ tags: [system-spec, sdk, erc-3643, compliance-engine, onboarding]
 ## 0. TL;DR (1분)
 
 - **무엇:** *"누가·이 증권 토큰을·이 경로로 거래해도 적법한가"*를 **거래 직전 자동 판정**하는 준법 표준 + SDK. **ERC-3643 호환**.
-- **타깃:** 미국 사모(**Reg D 506(c)**) 증권의 *2차 거래(전매)*. 1차 자산 = BlackRock **BUIDL** · 체인 = **Giwa** · 시장 = 미국.
+- **타깃:** 미국 사모(**Reg D 506(c)**) 증권의 *2차 거래(전매)*. 1차 자산 = BlackRock **BUIDL** · 체인 = **EVM L2** · 시장 = 미국.
 - **핵심 명제:** **Element**(부품) 1개 = 법률요건 하나의 포섭 · **Recipe**(묶음) 1개 = 법률 하나의 소결론 · **한 거래** = 걸리는 모든 Recipe의 *cumulative AND*. **위반 거래는 체결되지 않는다.**
 - **결정론 경계:** 온체인 모듈은 *판단하지 않고 verify만* 한다. *사실*(적격투자자·내부자·취득일)은 off-chain **Trusted Issuer**(Securitize=transfer agent, Sumsub=KYC)가 서명 claim으로 발급하고, 온체인은 그 claim의 진위(서명·발급자·만료)만 확인한다.
 - **자산 무관(asset-agnostic):** 부품·Recipe는 BUIDL에 의존하지 않는다. 자산별 사실은 **Manifest**에만 산다(ADR-006).

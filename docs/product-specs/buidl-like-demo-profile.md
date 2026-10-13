@@ -6,7 +6,7 @@ Current demo profile; not real BlackRock/Securitize BUIDL integration.
 
 ## Purpose
 
-This profile lets the Giwa MVP demonstrate how a BUIDL-like regulated fund asset can trade through Corner Store's protected Router path using the existing ERC-3643/T-REX fixture and the Corner Store Manifest/Recipe/Element model.
+This profile lets the MVP demonstrate how a BUIDL-like regulated fund asset can trade through Corner Store's protected Router path using the existing ERC-3643/T-REX fixture and the Corner Store Manifest/Recipe/Element model.
 
 The test model is an ERC20-style BUIDL reference asset converted into a local ERC-3643/T-REX test issuance. It is not a bridge, wrapper, or live integration with the real BUIDL token.
 

@@ -90,7 +90,7 @@ inspect `docker compose ps -a` and `docker compose logs deployer rfq operator-ap
 The sandbox uses public Anvil development identities, reference pricing/risk and
 mock qualification data. It is never a production deployment, never accepts
 production credentials, and does not replace the existing non-Docker Anvil or
-GIWA testnet flows.
+public testnet flows.
 
 The `dex-integration` template additionally generates:
 

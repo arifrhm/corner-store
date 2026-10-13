@@ -1,6 +1,6 @@
 ---
 type: requirement-spec
-project: RWA DEX (Giwa) · corner-store
+project: RWA DEX · corner-store
 element-id: E-01
 element-name: Form D Filing (Form D 확인 · Notice of Exempt Offering)
 status: v1.0 (2026-07-22) — 보경 walkthrough 기반. Part II는 실장 컨트랙트(FormDFiling.sol, mock) 기준.

@@ -15,7 +15,7 @@ REGISTER/UPDATE plan으로 만들고, delay 전후 상태를 fail-closed 검증�
 ## Out of Scope
 
 - Safe service submission, signing, custody 또는 production broadcast
-- GIWA 실거래 fee 예측과 실제 상품 parameter 승인
+- 대상 network 실거래 fee 예측과 실제 상품 parameter 승인
 - BUIDL-like profile migration(#109)
 
 ## Stop Condition

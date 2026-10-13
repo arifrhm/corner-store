@@ -1,7 +1,7 @@
-# GIWA 테스트넷 배포 방법
+# 공개 테스트넷 배포 방법
 
-이 문서는 Corner Store RFQ reference stack을 **로컬 Anvil이 아니라 GIWA
-Sepolia 테스트넷에 실제로 배포**하는 가장 단순한 절차다.
+이 문서는 Corner Store RFQ reference stack을 **로컬 Anvil이 아니라 공개
+테스트넷에 실제로 배포**하는 가장 단순한 절차다.
 
 배포 결과는 실제 테스트넷 트랜잭션과 컨트랙트 주소로 남는다. 다만 배포되는
 ERC-3643 자산, Trusted Issuer claim, quote token과 초기 잔액은 해커톤 검증을
@@ -12,8 +12,8 @@ ERC-3643 자산, Trusted Issuer claim, quote token과 초기 잔액은 해커톤
 처음 한 번:
 
 1. 최신 `main` 준비
-2. GIWA 전용 배포 지갑 생성 또는 등록
-3. Faucet에서 테스트 ETH 수령
+2. 테스트넷 전용 배포 지갑 생성 또는 등록
+3. Faucet에서 테스트 gas token 수령
 4. `.env.testnet`에 테스트 계정 주소 입력
 
 배포할 때:
@@ -54,8 +54,8 @@ worktree를 만드는 편이 안전하다.
 
 ```sh
 git fetch origin
-git worktree add /tmp/corner-store-giwa origin/main
-cd /tmp/corner-store-giwa
+git worktree add /tmp/corner-store-testnet origin/main
+cd /tmp/corner-store-testnet
 ```
 
 배포 파일이 있는지 확인한다.
@@ -67,30 +67,29 @@ test -x scripts/deploy-testnet-rfq.sh
 
 둘 중 하나라도 실패하면 아직 public-testnet 배포 코드가 없는 브랜치다.
 
-## 2. GIWA 네트워크 정보
+## 2. 네트워크 정보
 
 | 항목 | 값 |
 | --- | --- |
-| Network | GIWA Sepolia |
-| Chain ID | `91342` |
-| RPC | `https://sepolia-rpc.giwa.io` |
-| Explorer | `https://sepolia-explorer.giwa.io` |
-| Gas token | Test ETH |
+| Network | `<testnet-name>` |
+| Chain ID | `<chain-id>` |
+| RPC | `<rpc-url>` |
+| Explorer | `<explorer-url>` |
+| Gas token | 테스트 ETH 등 네트워크의 gas token |
 
-공식 문서:
+RPC, Chain ID, Faucet, Explorer 값은 배포 대상 네트워크 운영자의 공식 문서에서
+확인한다. 이후 명령과 설정의 `<chain-id>`, `<rpc-url>`, `<explorer-url>`은 그
+값으로 바꿔 사용한다.
 
-- <https://docs.giwa.io/giwa-chain/en/get-started/connect-to-giwa>
-- <https://docs.giwa.io/get-started/faucets>
-
-공용 RPC는 rate limit이 있을 수 있다. 배포 중 RPC 제한이 반복되면 GIWA가
-지원하는 별도 RPC provider를 사용하되 Chain ID는 반드시 `91342`인지 확인한다.
+공용 RPC는 rate limit이 있을 수 있다. 배포 중 RPC 제한이 반복되면 네트워크 운영자가
+지원하는 별도 RPC provider를 사용하되 Chain ID는 반드시 `<chain-id>`인지 확인한다.
 
 ## 3. 테스트넷 전용 배포 지갑 등록
 
-실제 자산을 보관하는 지갑을 사용하지 말고 GIWA 테스트넷 전용 지갑을 사용한다.
+실제 자산을 보관하는 지갑을 사용하지 말고 테스트넷 전용 지갑을 사용한다.
 
 ```sh
-cast wallet import corner-store-giwa --interactive
+cast wallet import corner-store-testnet --interactive
 ```
 
 실행 중 입력하는 것:
@@ -99,27 +98,27 @@ cast wallet import corner-store-giwa --interactive
 2. 로컬 keystore를 암호화할 비밀번호
 
 개인키는 명령행, `.env.testnet`, Git에 넣지 않는다. 이후 배포 명령에서는 개인키
-대신 `--account corner-store-giwa`를 사용한다.
+대신 `--account corner-store-testnet`을 사용한다.
 
 등록 확인:
 
 ```sh
 cast wallet list
-cast wallet address --account corner-store-giwa
+cast wallet address --account corner-store-testnet
 ```
 
 출력된 주소가 이번 배포의 `CORNER_STORE_TESTNET_DEPLOYER`다.
 
-## 4. Faucet에서 테스트 ETH 받기
+## 4. Faucet에서 테스트 gas token 받기
 
-위에서 확인한 deployer 주소로 GIWA Faucet의 테스트 ETH를 받는다.
+위에서 확인한 deployer 주소로 공식 Faucet에서 테스트 gas token을 받는다.
 
 잔액 확인:
 
 ```sh
 cast balance \
-  "$(cast wallet address --account corner-store-giwa)" \
-  --rpc-url https://sepolia-rpc.giwa.io
+  "$(cast wallet address --account corner-store-testnet)" \
+  --rpc-url <rpc-url>
 ```
 
 Corner Store reference stack은 여러 컨트랙트와 초기화 트랜잭션을 배포한다.
@@ -146,11 +145,13 @@ ls -la .env.testnet.example scripts/deploy-testnet-rfq.sh
 `.env.testnet`에 다음처럼 입력한다.
 
 ```dotenv
-RPC_URL=https://sepolia-rpc.giwa.io
-CHAIN_ID=91342
-BLOCKSCOUT_API_URL=https://sepolia-explorer.giwa.io/api
+RPC_URL=<rpc-url>
+CHAIN_ID=<chain-id>
 
-# cast wallet address --account corner-store-giwa 결과
+# 선택: Blockscout 기반 explorer에서 source verification을 할 때만 입력
+BLOCKSCOUT_API_URL=<blockscout-api-url>
+
+# cast wallet address --account corner-store-testnet 결과
 CORNER_STORE_TESTNET_DEPLOYER=0x...
 
 # 짧은 해커톤 fixture에서는 deployer와 같아도 된다.
@@ -167,11 +168,11 @@ CORNER_STORE_TESTNET_INELIGIBLE_INVESTOR=0x...
 # 실제 운영·자산 보관 지갑의 키를 사용하지 않는다.
 CORNER_STORE_TESTNET_ISSUER_KEY=0x...
 
-CORNER_STORE_DEPLOYMENT_ID=giwa-sepolia-rfq
+CORNER_STORE_DEPLOYMENT_ID=hackathon-testnet-rfq
 
 # 배포본 브라우저 데모 설정
-CORNER_STORE_TESTNET_RPC_URL=https://sepolia-rpc.giwa.io
-CORNER_STORE_TESTNET_EXPLORER_URL=https://sepolia-explorer.giwa.io
+CORNER_STORE_TESTNET_RPC_URL=<rpc-url>
+CORNER_STORE_TESTNET_EXPLORER_URL=<explorer-url>
 CORNER_STORE_TESTNET_DEMO_HOST=127.0.0.1
 CORNER_STORE_TESTNET_DEMO_PORT=8791
 ```
@@ -225,10 +226,10 @@ cast chain-id --rpc-url "$RPC_URL"
 cast balance "$CORNER_STORE_TESTNET_DEPLOYER" --rpc-url "$RPC_URL"
 ```
 
-첫 번째 명령 결과가 반드시 다음과 같아야 한다.
+첫 번째 명령 결과가 반드시 공식 문서의 대상 Chain ID와 같아야 한다.
 
 ```text
-91342
+<chain-id>
 ```
 
 다르면 배포하지 않는다.
@@ -241,17 +242,17 @@ cast balance "$CORNER_STORE_TESTNET_DEPLOYER" --rpc-url "$RPC_URL"
 scripts/deploy-testnet-rfq.sh \
   --rpc-url "$RPC_URL" \
   --chain-id "$CHAIN_ID" \
-  --account corner-store-giwa
+  --account corner-store-testnet
 ```
 
 확인할 것:
 
 - sender가 `CORNER_STORE_TESTNET_DEPLOYER`와 같은가
-- Chain ID가 `91342`인가
+- Chain ID가 `<chain-id>`인가
 - 시뮬레이션이 revert 없이 끝나는가
-- deployer의 테스트 ETH가 충분한가
+- deployer의 테스트 gas token이 충분한가
 
-## 9. GIWA 테스트넷에 실제 배포
+## 9. 테스트넷에 실제 배포
 
 시뮬레이션이 성공한 뒤에만 실행한다.
 
@@ -259,19 +260,19 @@ scripts/deploy-testnet-rfq.sh \
 scripts/deploy-testnet-rfq.sh \
   --rpc-url "$RPC_URL" \
   --chain-id "$CHAIN_ID" \
-  --account corner-store-giwa \
+  --account corner-store-testnet \
   --broadcast \
-  --verify \
-  --verifier blockscout \
-  --verifier-url "$BLOCKSCOUT_API_URL"
+  --verify
 ```
 
-GIWA 공식 Foundry 가이드의 Blockscout API endpoint를 사용해 배포와 source
-verification을 함께 수행한다. Foundry가 keystore 비밀번호를 요청하면 3번
-단계에서 설정한 비밀번호를 입력한다.
+`--verify`로 배포와 source verification을 함께 수행한다. verifier 설정은
+explorer에 따라 다르다. Etherscan 호환 explorer와 Blockscout 기반 explorer의
+옵션은 [`docs/testnet-deployment.md`](./docs/testnet-deployment.md)의
+8절(Explorer Source Verification)을 따른다. Foundry가 keystore 비밀번호를
+요청하면 3번 단계에서 설정한 비밀번호를 입력한다.
 스크립트는 다음을 자동으로 수행한다.
 
-1. GIWA Chain ID 재확인
+1. 대상 Chain ID 재확인
 2. ERC-3643/ONCHAINID 테스트 fixture 배포
 3. Compliance registry, Engine, Router 배포
 4. RFQ Adapter, Venue와 Maker Authorizer 배포
@@ -287,7 +288,7 @@ verification을 함께 수행한다. Foundry가 keystore 비밀번호를 요청�
 정상 완료 시 다음 파일이 생성된다.
 
 ```text
-deployments/public/giwa-sepolia-rfq-91342.json
+deployments/public/hackathon-testnet-rfq-<chain-id>.json
 ```
 
 주소 요약:
@@ -324,7 +325,7 @@ artifact에는 다음이 기록된다.
 각 참여자 keystore를 등록한 후 아래 명령을 해당 계정으로 실행한다.
 
 ```sh
-CORNER_STORE_ARTIFACT=deployments/public/giwa-sepolia-rfq-91342.json \
+CORNER_STORE_ARTIFACT=deployments/public/hackathon-testnet-rfq-<chain-id>.json \
 forge script script/ApproveTestnetRFQ.s.sol:ApproveTestnetRFQ \
   --rpc-url "$RPC_URL" \
   --chain-id "$CHAIN_ID" \
@@ -337,7 +338,7 @@ forge script script/ApproveTestnetRFQ.s.sol:ApproveTestnetRFQ \
 ## 12. 배포본 최종 검증
 
 ```sh
-CORNER_STORE_ARTIFACT=deployments/public/giwa-sepolia-rfq-91342.json \
+CORNER_STORE_ARTIFACT=deployments/public/hackathon-testnet-rfq-<chain-id>.json \
 CORNER_STORE_REQUIRE_APPROVALS=true \
 forge script script/VerifyTestnetRFQ.s.sol:VerifyTestnetRFQ \
   --rpc-url "$RPC_URL" \
@@ -354,15 +355,15 @@ forge script script/VerifyTestnetRFQ.s.sol:VerifyTestnetRFQ \
 - 초기 inventory 부족
 - 요청한 참여자의 allowance 부족
 
-## 13. GIWA 배포본으로 브라우저 데모 실행
+## 13. 테스트넷 배포본으로 브라우저 데모 실행
 
 Maker용 테스트넷 전용 키를 로컬 환경변수로 제공해야 RFQ backend가 firm quote에
 서명할 수 있다. 이 키도 실제 자산 지갑과 분리하고 Git에 저장하지 않는다.
 
 ```sh
-export CORNER_STORE_TESTNET_ARTIFACT=deployments/public/giwa-sepolia-rfq-91342.json
-export CORNER_STORE_TESTNET_RPC_URL=https://sepolia-rpc.giwa.io
-export CORNER_STORE_TESTNET_EXPLORER_URL=https://sepolia-explorer.giwa.io
+export CORNER_STORE_TESTNET_ARTIFACT=deployments/public/hackathon-testnet-rfq-<chain-id>.json
+export CORNER_STORE_TESTNET_RPC_URL=<rpc-url>
+export CORNER_STORE_TESTNET_EXPLORER_URL=<explorer-url>
 export CORNER_STORE_TESTNET_MAKER_KEY=0x...
 
 scripts/run-testnet-rfq-demo.sh
@@ -373,15 +374,15 @@ scripts/run-testnet-rfq-demo.sh
 이 데모는 기존 로컬 `scripts/showcase.sh`와 별개다.
 
 - `scripts/showcase.sh`: Anvil에서 결정적으로 실행하는 발표용 시나리오
-- `scripts/run-testnet-rfq-demo.sh`: 이미 GIWA에 배포된 artifact를 사용하는
-  실제 테스트넷 거래 증명
+- `scripts/run-testnet-rfq-demo.sh`: 이미 공개 테스트넷에 배포된 artifact를
+  사용하는 실제 테스트넷 거래 증명
 
 ## 가장 짧은 명령 요약
 
 최초 한 번:
 
 ```sh
-cast wallet import corner-store-giwa --interactive
+cast wallet import corner-store-testnet --interactive
 cp .env.testnet.example .env.testnet
 ```
 
@@ -395,12 +396,12 @@ set +a
 scripts/deploy-testnet-rfq.sh \
   --rpc-url "$RPC_URL" \
   --chain-id "$CHAIN_ID" \
-  --account corner-store-giwa
+  --account corner-store-testnet
 
 scripts/deploy-testnet-rfq.sh \
   --rpc-url "$RPC_URL" \
   --chain-id "$CHAIN_ID" \
-  --account corner-store-giwa \
+  --account corner-store-testnet \
   --broadcast
 ```
 
@@ -412,18 +413,18 @@ scripts/deploy-testnet-rfq.sh \
 
 ```sh
 git fetch origin
-git worktree add /tmp/corner-store-giwa origin/main
-cd /tmp/corner-store-giwa
+git worktree add /tmp/corner-store-testnet origin/main
+cd /tmp/corner-store-testnet
 cp .env.testnet.example .env.testnet
 ```
 
 ### `RPC chain id ... does not match`
 
-잘못된 RPC를 사용하고 있다. GIWA Sepolia는 Chain ID `91342`다.
+잘못된 RPC를 사용하고 있다. 대상 테스트넷의 Chain ID는 공식 문서의 `<chain-id>`다.
 
 ### `insufficient funds`
 
-deployer의 GIWA 테스트 ETH가 부족하다. Faucet에서 추가로 받은 뒤 잔액을 다시
+deployer의 테스트 gas token이 부족하다. Faucet에서 추가로 받은 뒤 잔액을 다시
 확인한다.
 
 ### artifact가 이미 존재한다
@@ -431,7 +432,7 @@ deployer의 GIWA 테스트 ETH가 부족하다. Faucet에서 추가로 받은 �
 public deployment 기록은 덮어쓰지 않는다. 새로운 ID를 사용한다.
 
 ```sh
-export CORNER_STORE_DEPLOYMENT_ID=giwa-sepolia-rfq-v2
+export CORNER_STORE_DEPLOYMENT_ID=hackathon-testnet-rfq-v2
 ```
 
 ### 개인키를 어디에 넣어야 하는가
@@ -439,8 +440,8 @@ export CORNER_STORE_DEPLOYMENT_ID=giwa-sepolia-rfq-v2
 deployer 개인키는 `.env.testnet`에 넣지 않는다.
 
 ```sh
-cast wallet import corner-store-giwa --interactive
+cast wallet import corner-store-testnet --interactive
 ```
 
 로 암호화된 Foundry keystore에 한 번 등록하고 배포 시
-`--account corner-store-giwa`만 사용한다.
+`--account corner-store-testnet`만 사용한다.

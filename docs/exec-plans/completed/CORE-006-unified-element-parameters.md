@@ -22,7 +22,7 @@ migration하고, parameter schema capability와 크기 상한을 immutable metad
 - generic MinimumTradeAmount migration과 predicate library(#110/#109)
 - policyId의 address/runtime-code binding(#105)
 - Recipe latest API 제거(#104)
-- 기존 GIWA 배포 ABI 호환 adapter
+- 기존 testnet 배포 ABI 호환 adapter
 
 ## Behavior Lock
 

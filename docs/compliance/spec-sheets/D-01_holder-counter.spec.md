@@ -1,6 +1,6 @@
 ---
 type: requirement-spec
-project: RWA DEX (Giwa) · corner-store
+project: RWA DEX · corner-store
 element-id: D-01
 element-name: Holder Count (보유자 수 카운터)
 status: v1.0 (2026-07-22) — 보경 walkthrough 재작성본. Part II는 실장 컨트랙트(HolderCount.sol) 기준. v0.x(승준 staging 기반) 대체.

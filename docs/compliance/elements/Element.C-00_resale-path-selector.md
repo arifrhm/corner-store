@@ -143,7 +143,7 @@ BUIDL-like §3(c)(7) 펀드 토큰이라는 구체적 대상에 위 조문 지�
 
 **⑦ 반대로 Reg S 904는 R3를 풀어 주지 못한다.** ICA §3(c)(7)(A)는 *"the outstanding securities of which are owned exclusively by persons who, at the time of acquisition of such securities, are qualified purchasers"* 라고 할 뿐, 미국인/외국인을 구별하지 않는다. Rule 904는 1933년법 §5의 문제를 해결할 뿐이고, 1940년법의 QP 요건은 그대로 남는다. **역외 매수인도 QP여야 한다.** 이것이 §9의 Cumulative Recipe 모델이 필요한 이유의 교과서적 사례다.
 
-**⑧ Reg S 904의 offshore transaction 요건은 (A) 갈래로만 갈 수 있다.** §230.902(h)(1)(ii)는 (A)와 (B) 중 **택일**을 허용하는데, 904용 (B)(2)는 거래가 *"designated offshore securities market"* 에서 체결될 것을 요구한다. §230.902(b)(1)의 열거 목록은 런던·도쿄·홍콩 등 전통 거래소이고, Giwa 체인은 여기 없다. (b)(2)의 SEC 지정도 없다. 따라서 **(B)(2)는 원천적으로 불가능**하고, **(A) — 매수 주문 시점에 매수인이 미국 밖에 있을 것 — 만 남는다.** 이는 KYC 데이터의 소재지 필드에 법적 무게를 싣는다는 뜻이다(§12 OD-C00-4).
+**⑧ Reg S 904의 offshore transaction 요건은 (A) 갈래로만 갈 수 있다.** §230.902(h)(1)(ii)는 (A)와 (B) 중 **택일**을 허용하는데, 904용 (B)(2)는 거래가 *"designated offshore securities market"* 에서 체결될 것을 요구한다. §230.902(b)(1)의 열거 목록은 런던·도쿄·홍콩 등 전통 거래소이고, 본 DEX가 운영되는 L2 체인은 여기 없다. (b)(2)의 SEC 지정도 없다. 따라서 **(B)(2)는 원천적으로 불가능**하고, **(A) — 매수 주문 시점에 매수인이 미국 밖에 있을 것 — 만 남는다.** 이는 KYC 데이터의 소재지 필드에 법적 무게를 싣는다는 뜻이다(§12 OD-C00-4).
 
 ### 3.0.2 조문 순서·중요성 한눈에 보기 (법 리스트)
 

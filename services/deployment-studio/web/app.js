@@ -1,5 +1,5 @@
 const $ = (id) => document.getElementById(id);
-const KNOWN_NETWORKS = new Set(["anvil", "sepolia", "arbitrum-sepolia", "arbitrum-one", "giwa"]);
+const KNOWN_NETWORKS = new Set(["anvil", "sepolia", "arbitrum-sepolia", "arbitrum-one"]);
 const DEMO_BROADCAST_NETWORKS = new Set(["anvil"]);
 const MODULE_PRESETS = {
   pricingModule: new Set(["corner-store.fixed-rate", "integrator.pricing"]),
@@ -171,7 +171,7 @@ const HELP_CONTENT = {
     title: "Network target에는 무엇을 고르나요?",
     body: `
       <p>설정과 dry-run을 만들 대상 EVM 네트워크입니다. Anvil 외 네트워크도 RPC를 입력해 계획을 검토할 수 있습니다.</p>
-      <ul><li><b>Anvil</b>: 로컬 reference stack 직접 배포 가능</li><li><b>Arbitrum/GIWA/기타 EVM</b>: 현재 Studio에서는 dry-run과 검토만 가능</li></ul>
+      <ul><li><b>Anvil</b>: 로컬 reference stack 직접 배포 가능</li><li><b>Arbitrum/기타 EVM</b>: 현재 Studio에서는 dry-run과 검토만 가능</li></ul>
       <div class="dialog-boundary">Production network는 브라우저에서 바로 broadcast하지 않습니다. 향후 multisig proposal, HSM signer와 contract verification을 갖춘 production adapter가 실행해야 합니다.</div>`
   },
   "production-network": {

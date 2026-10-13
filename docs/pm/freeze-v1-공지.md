@@ -31,6 +31,6 @@
 
 1. **개발팀**: Matrix로 Phase 1 착수 — 권장 우선 부품 walkthrough = A-09(look-through) → D-01(보유자수 카운터) → C-00(전매경로).
 2. **다음 회의 안건(팀 결정 5건)**: 매수금지 명단 governance / 만료 자격자 배당 처리 / 긴급정지 multisig / 운영키 custody(15c3-3) / 의심거래 flag 처리 시한.
-3. **추적 중인 설계 리스크(블로커 아님)**: L2/Giwa substrate(1순위)·업그레이드 거버넌스·MEV·oracle·composability·기업행위 — 등록부 §2.
+3. **추적 중인 설계 리스크(블로커 아님)**: L2 substrate(1순위)·업그레이드 거버넌스·MEV·oracle·composability·기업행위 — 등록부 §2.
 
 *질문·이의는 이 문서 PR 코멘트 또는 Discussions로.*

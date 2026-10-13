@@ -1,6 +1,6 @@
 ---
 type: requirement-spec
-project: RWA DEX (Giwa) · corner-store
+project: RWA DEX · corner-store
 element-id: F-05
 element-name: Short Sale Restriction (공매도 규율 · Reg SHO)
 status: "v0.1 (2026-07-28) — 2부 구성. 컨트랙트 미구현(target 명세). 승준 walkthrough 기반(보경 미검토)."

@@ -1,6 +1,6 @@
 ---
 type: requirement-spec
-project: RWA DEX (Giwa) · corner-store
+project: RWA DEX · corner-store
 element-id: B-01
 element-name: Manifest Integrity (신상카드 정합)
 status: v0.1 (2026-07-28) — 2부 구성. Part II는 실장 컨트랙트(AssetClassification.sol) 기준.

@@ -91,7 +91,7 @@ function check(
 ```
 
 `elementId`는 호출 인자로 반복 전달하지 않는다. immutable Element Registry
-binding이 identity의 source of truth다. 이미 배포된 GIWA 컨트랙트의 ABI 호환은
+binding이 identity의 source of truth다. 이미 배포된 testnet 컨트랙트의 ABI 호환은
 이번 migration 요구사항이 아니지만 저장소의 local Anvil demo와 conformance는
 유지한다.
 
@@ -224,7 +224,7 @@ AND/OR/NOT 조합은 만들지 않는다. 새로운 공통 primitive는 실제 E
 - 제한적 정규화는 얇은 Element wrapper 중복을 일부 허용하지만, 법률적으로 다른
   규칙을 하나의 범용 interpreter에 섞지 않는다.
 - 모호한 latest API와 기존 Element ABI를 제거하므로 breaking migration이지만,
-  기존 GIWA 배포 호환을 요구하지 않는 현재 시점에 하나의 제품 모델로 정리한다.
+  기존 testnet 배포 호환을 요구하지 않는 현재 시점에 하나의 제품 모델로 정리한다.
 
 ## 5. 별도 승인·외부 입력이 필요한 사항
 

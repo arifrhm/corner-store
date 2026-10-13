@@ -47,7 +47,7 @@
   startup verification, Maker/Manifest/inventory readiness와 필수 세 장면을 검증한다.
   선택적으로 다운로드한 settlement evidence의 deployment/source/contract/participant/
   token/transaction/block/측정 시간을 같은 live state에 대조한다.
-- 기존 Anvil showcase와 GIWA testnet 흐름은 변경하지 않는다.
+- 기존 Anvil showcase와 public testnet 흐름은 변경하지 않는다.
 
 ### Verification
 
@@ -251,7 +251,7 @@ passing
   fail-closed하며, image에는 private key, RPC credential 또는 PII를 포함하지 않는다.
 - `buidl-like`는 기본 fixture이고 `CORNER_STORE_PROFILE=reg-d`로 동일한 실행 계약에서
   Reg D fixture를 선택할 수 있다.
-- Docker sandbox는 demo/reference 전용이며 기존 non-Docker local Anvil과 GIWA
+- Docker sandbox는 demo/reference 전용이며 기존 non-Docker local Anvil과 public
   testnet 흐름을 대체하지 않는다.
 
 ### Verification
@@ -1220,7 +1220,7 @@ passing
 
 ### Behavior
 
-- `src/demo/BuidlLikeDemoAsset.sol`이 Giwa MVP용 BUIDL-like asset profile을 제공한다.
+- `src/demo/BuidlLikeDemoAsset.sol`이 MVP용 BUIDL-like asset profile을 제공한다.
 - 테스트 fixture가 profile의 이름/심볼로 실제 ERC-3643/T-REX 토큰을 배포한다.
 - profile Manifest는 Reg D 506(c) 발행 Recipe와 ICA 3(c)(7) fund Recipe를 동시에 바인딩한다.
 - `factsPacked` fund bit가 켜진 자산에서는 BUIDL-like fund Recipe가 A-13 Qualified Purchaser와 minimum investment 검사를 활성화한다.
@@ -2408,7 +2408,7 @@ passing
   production secret 또는 mainnet broadcast 입력을 제공하지 않는다.
 - integration mode와 account/governance role label은 contextual guide로 실제
   생성물, integrator 책임과 reference 경계를 설명한다.
-- network preset은 Anvil, public testnet, Arbitrum과 GIWA/custom EVM을 설정 및
+- network preset은 Anvil, public testnet, Arbitrum과 custom EVM을 설정 및
   dry-run 대상으로 제공하되 direct broadcast는 runtime 오설정으로도 확장할 수
   없는 Anvil-only gate와 operator RPC allowlist로 제한한다.
 - RFQ module은 검증된 reference ID와 custom adapter slot을 선택하게 하며,

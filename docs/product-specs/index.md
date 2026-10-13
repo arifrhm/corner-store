@@ -9,7 +9,7 @@
 | [`../architecture/asset-manifest.md`](../architecture/asset-manifest.md) | Asset Compliance Manifest 책임과 lifecycle | Current |
 | [`../ROADMAP.md`](../ROADMAP.md) | 구현 순서와 완료 조건 | Current |
 | [`../MVP.md`](../MVP.md) | 과거 AMM 중심 설계 기록 | Historical |
-| [`buidl-like-demo-profile.md`](buidl-like-demo-profile.md) | Giwa MVP용 BUIDL-like ERC-3643 demo asset profile | Current |
+| [`buidl-like-demo-profile.md`](buidl-like-demo-profile.md) | MVP용 BUIDL-like ERC-3643 demo asset profile | Current |
 | [`rfq-backend-sdk-and-demo.md`](./rfq-backend-sdk-and-demo.md) | RFQ backend SDK와 MVP demo backend 계획 | Current |
 | [`production-rfq-policy.md`](./production-rfq-policy.md) | production RFQ dealer/settlement 책임과 구현 계약 | Current |
 
