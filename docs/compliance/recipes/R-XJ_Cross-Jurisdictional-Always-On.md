@@ -2,7 +2,7 @@
 type: recipe-requirement-spec
 recipe-id: R-XJ
 recipe-name: Cross-Jurisdictional Always-On (제재·관할·Reg M 횡단 전제)
-project: RWA DEX (Giwa) · corner-store
+project: RWA DEX · corner-store
 status: v2.0 (2026-07-28) — 2부 구성(제1부 법률논증 산문 + 제2부 목표 규격). 전용 Recipe 컨트랙트 미구현(target spec).
 substance-sot: "승준 recipe walkthrough — R-XJ_Cross-Jurisdictional-Always-On.md v1.0 (2026-06-17, baseline 전제층·fail-closed). 보경 recipe 검토본 없음 — 법률 검토 필요."
 implements: "전용 컨트랙트 미구현 — 목표 규격. 구성 요소(A-01·A-02·F-04)는 개별 Element로 스펙됨."

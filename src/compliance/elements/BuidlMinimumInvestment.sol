@@ -16,7 +16,7 @@ import {ReasonCodes} from "../../libraries/ReasonCodes.sol";
 
 /// @dev BUIDL-like demo minimum investment threshold.
 ///
-/// This is a legacy test-issuance rule for the Giwa MVP profile, not a claim that the
+/// This is a legacy test-issuance rule for the MVP demo profile, not a claim that the
 /// live BlackRock/Securitize BUIDL token can be integrated through this element.
 /// The engine passes the regulated asset quantity as `amount`; in this demo the
 /// BUIDL-like unit is treated as a $1 NAV share, so 5,000,000 tokens models the

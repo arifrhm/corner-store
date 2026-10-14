@@ -1,6 +1,6 @@
 ---
 type: requirement-spec
-project: RWA DEX (Giwa) · corner-store
+project: RWA DEX · corner-store
 element-id: A-01
 element-name: Sanctions Screening (OFAC 제재 스크리닝)
 status: v0.1 (2026-07-22) — 2부 구성. Part II는 실장 컨트랙트(Sanctions.sol) 기준.

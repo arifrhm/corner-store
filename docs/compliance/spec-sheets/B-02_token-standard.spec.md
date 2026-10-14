@@ -1,6 +1,6 @@
 ---
 type: requirement-spec
-project: RWA DEX (Giwa) · corner-store
+project: RWA DEX · corner-store
 element-id: B-02
 element-name: Token Standard Conformance (토큰 표준)
 status: v0.1 (2026-07-22) — 2부 구성. Part II는 실장 컨트랙트(Erc3643Native.sol) 기준.

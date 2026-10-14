@@ -1,6 +1,6 @@
 ---
 type: requirement-spec
-project: RWA DEX (Giwa) · corner-store
+project: RWA DEX · corner-store
 element-id: A-02
 element-name: Jurisdiction & Residence Gate (국가·거주 제한)
 status: v1.0 (2026-07-22) — 보경 walkthrough 기반. Part II는 실장 컨트랙트(Jurisdiction.sol, mock) 기준.

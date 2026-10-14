@@ -37,7 +37,7 @@ source: Obsidian vault `_PM/00_프로젝트 진행 연대기 + 구현 맵.md` (�
 | 레퍼런스 구현 | Corner Store DEX (코드네임 구멍가게) | 그 표준이 실제로 돌아감을 증명하는 데모 거래소 |
 | 1차 적용 자산 | 미국 Reg D 506(c) RWA의 2차 유통 | 블랙록 BUIDL·온도 USDY 같은 토큰화 펀드 |
 
-체인은 Giwa(두나무 계열 OP Stack EVM L2), 타깃 시장은 미국(SEC의 Reg D 506(c) 사모 + Reg ATS 대체거래시스템 경로)이다.
+체인은 OP Stack 기반 EVM L2, 타깃 시장은 미국(SEC의 Reg D 506(c) 사모 + Reg ATS 대체거래시스템 경로)이다.
 
 ---
 
@@ -94,7 +94,7 @@ source: Obsidian vault `_PM/00_프로젝트 진행 연대기 + 구현 맵.md` (�
 
 ### 2026-06-09 ~ 06-12 — 심화와 구체화 (지금 위치)
 
-4-Layer를 상세 spec으로 내려쓰고(Element·Recipe·Manifest·Operator 아키텍처 노트들), 기존 플랫폼(Securitize·tZERO) 대비 차별점을 "Protocol Portability"(어느 규제환경에서도 같은 프로토콜 재사용)로 정리했다. **블랙록 BUIDL 펀드를 ERC-3643으로 구현한다면?**을 첫 구체 인스턴스로 풀었고(노트 29), 유통규제 Reg M(공모 중 시세 받치기 금지)을 심화했으며, **실행 플랜(노트 31)**과 **리걸 파트 구현 플랜(노트 33)**을 세웠다. 체인 베이스를 Canton에서 Giwa로 정정했다. 그 결과 **Element pool(부품 목록)을 확정(freeze)할 수 있는 상태**에 도달했다.
+4-Layer를 상세 spec으로 내려쓰고(Element·Recipe·Manifest·Operator 아키텍처 노트들), 기존 플랫폼(Securitize·tZERO) 대비 차별점을 "Protocol Portability"(어느 규제환경에서도 같은 프로토콜 재사용)로 정리했다. **블랙록 BUIDL 펀드를 ERC-3643으로 구현한다면?**을 첫 구체 인스턴스로 풀었고(노트 29), 유통규제 Reg M(공모 중 시세 받치기 금지)을 심화했으며, **실행 플랜(노트 31)**과 **리걸 파트 구현 플랜(노트 33)**을 세웠다. 체인 베이스를 Canton에서 EVM L2로 정정했다. 그 결과 **Element pool(부품 목록)을 확정(freeze)할 수 있는 상태**에 도달했다.
 
 - 열린 것 = **지금의 병목**: Element pool freeze 결정 + Legal-to-Technical Matrix 작성 (→ §5·§6).
 

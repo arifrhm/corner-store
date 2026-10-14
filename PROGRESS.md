@@ -30,7 +30,7 @@ source of truth로 사용한다.
   다운로드할 수 있다. 실제 Monad 수치는 public-chain 체결 후 채운다.
 - Monad 배포에서는 정책 profile을 fork하지 않고 ERC-3643 token 표시 이름만
   `Demo Restricted Security (DRS)`로 주입할 수 있다. 기본값은 기존 BUIDL-like 이름을
-  유지하므로 GIWA/기존 testnet 입력에는 영향이 없다.
+  유지하므로 기존 testnet 입력에는 영향이 없다.
 - 선택형 expired-claim 지갑은 다른 투자자의 QP freshness cap을 바꾸지 않고
   366일 전 mock 증빙을 받아 네 번째 거부 장면을 만든다. 임시 Anvil 실제 배포와
   HTTP API에서 `Demo Restricted Security (DRS)` 표시, 활성화된 네 번째 scenario와
@@ -89,7 +89,7 @@ source of truth로 사용한다.
   저장소 기준 1.7.1을 사용했다.
 - Monad 공식 public RPC `https://testnet-rpc.monad.xyz`가 chain ID 10143과 현재
   block을 반환하는 것을 새 preflight script로 확인했다. 기존 비공개 `.env.testnet`은
-  GIWA chain 91342 설정이므로 수정하지 않았지만, 포함된 공개 actor 주소의 Monad
+  다른 testnet chain 설정이므로 수정하지 않았지만, 포함된 공개 actor 주소의 Monad
   형식·중복·deployer gas balance는 읽기 전용 preflight를 통과했다. 실제 broadcast는
   로컬 keystore unlock과 Monad 전용 deployment id/config가, HTTPS hosting은 target이
   준비되는 즉시 진행한다.

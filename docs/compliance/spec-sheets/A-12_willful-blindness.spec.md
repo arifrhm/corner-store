@@ -1,6 +1,6 @@
 ---
 type: requirement-spec
-project: RWA DEX (Giwa) · corner-store
+project: RWA DEX · corner-store
 element-id: A-12
 element-name: Willful Blindness Blocker (모름 항변 차단 / Red Flag Knowledge Bar)
 status: "v0.2 (2026-09-12) — illustrative reference 컨트랙트 구현. production data source·Recipe 활성화는 미완료."

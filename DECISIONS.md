@@ -96,7 +96,7 @@ timelock을 사용한다. production Recipe 조회는 exact `recipeKey + version
 
 ### Consequences
 
-- 기존 GIWA 배포 ABI 호환 대신 저장소 전체를 하나의 interface로 migration한다.
+- 기존 testnet 배포 ABI 호환 대신 저장소 전체를 하나의 interface로 migration한다.
 - local Anvil demo는 유지하지만 ABI/schema/latest call site를 함께 갱신해야 한다.
 - 구현은 GitHub epic #101의 하위 이슈별 feature branch와 PR로 분리한다.
 - 실제 상품값, 보관 기간, provider/Safe 운영자는 외부 승인 전 production에서

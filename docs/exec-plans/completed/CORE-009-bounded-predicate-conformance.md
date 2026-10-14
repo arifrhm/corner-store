@@ -9,7 +9,7 @@ Element의 evidence/default enforcement 의미와 parameter decoding을 fail-clo
 
 - 기존 24개 Element의 empty-parameter 판정과 reason code는 유지한다.
 - 기존 registration의 default enforcement 결과는 유지한다.
-- 기존 local BUIDL-like/Reg-D demo와 GIWA testnet build 흐름을 깨뜨리지 않는다.
+- 기존 local BUIDL-like/Reg-D demo와 public testnet build 흐름을 깨뜨리지 않는다.
 - 법률 의미가 다른 Element를 하나로 합치지 않는다.
 
 ## In Scope

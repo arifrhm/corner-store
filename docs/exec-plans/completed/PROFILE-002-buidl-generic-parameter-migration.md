@@ -15,7 +15,7 @@ generic `MIN-AMOUNT-v1`과 versioned `ManifestPolicyConfig`로 교체한다.
 ## Out of Scope
 
 - 실제 BlackRock/Securitize BUIDL 정책값 확정 또는 production activation
-- issuer/legal evidence 생성, Safe 서명·제출 또는 GIWA broadcast
+- issuer/legal evidence 생성, Safe 서명·제출 또는 testnet broadcast
 - legacy immutable contract 삭제
 
 ## Stop Condition

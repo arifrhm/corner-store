@@ -100,7 +100,7 @@ SEC 간행물 *Rule 144: Selling Restricted and Control Securities*:
 
 > … the amount of securities sold, together with all sales of securities of the same class sold for the account of such person within the preceding three months, shall not exceed the greatest of:
 
-(i)은 "One percent of the shares or other units of the class outstanding as shown by the most recent report or statement published by the issuer", (ii)는 national securities exchange 및 registered securities association 자동호가시스템 보고 거래량, (iii)은 §242.600상 *effective transaction reporting plan*·*effective national market system plan* 보고 거래량 — Giwa 체인 DEX는 (ii)(iii) 정의상 0이므로 상한이 (i) 1%로 수렴한다는 C-08 결론이 현행 자구로 재확인된다. "shall not exceed"이므로 **위반 부등식은 초과(>)**, 상한 도달(=)은 적법.
+(i)은 "One percent of the shares or other units of the class outstanding as shown by the most recent report or statement published by the issuer", (ii)는 national securities exchange 및 registered securities association 자동호가시스템 보고 거래량, (iii)은 §242.600상 *effective transaction reporting plan*·*effective national market system plan* 보고 거래량 — 본 L2 체인 위 DEX는 (ii)(iii) 정의상 0이므로 상한이 (i) 1%로 수렴한다는 C-08 결론이 현행 자구로 재확인된다. "shall not exceed"이므로 **위반 부등식은 초과(>)**, 상한 도달(=)은 적법.
 
 **(h)(1) Form 144 (→ E-06):**
 

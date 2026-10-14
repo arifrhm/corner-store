@@ -115,7 +115,7 @@ Recipe의 단위를 "법률"이나 "조문"으로 잡으면 모호해집니다. 
 | 새 규제·새 국가 | Recipe 신설 + Manifest 등록 | ❌ |
 | 법인 entity 변경 (한국 LLC → US Delaware LLC → Foundation 등) | Layer 4 (Operator) 단독 결정 | ❌ |
 | Custody model 변경 (self-custody → 외부 custody → hybrid) | Manifest 설정 변경 | ❌ |
-| 메인넷 체인 변경 (Giwa → Ethereum → 다른 L2 등) | 배포 환경 변경 | ❌ |
+| 메인넷 체인 변경 (현재 L2 → Ethereum → 다른 L2 등) | 배포 환경 변경 | ❌ |
 
 → 즉 ***Element·Recipe·Manifest·Router는 *어느 법인이 *어떤 custody로 *어느 체인에서 *운영하든 *동일하게 작동*합니다*. *법인·custody·체인 결정이 *protocol에 *영향을 미치지 않는다는 *것*이 4-Layer 설계의 *core differentiation*입니다 — *기존 RWA platforms는 *protocol과 *법인·custody가 *tightly coupled*이라 *상황 변경 시 *별도 implementation 필요했음*. *우리는 *동일 protocol을 *상황에 맞춰 *재사용 가능*.
 

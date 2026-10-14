@@ -1,6 +1,6 @@
 ---
 type: requirement-spec
-project: RWA DEX (Giwa) · corner-store
+project: RWA DEX · corner-store
 element-id: A-05
 element-name: US Tax Resident Exclusion (미국 세법상 거주자 배제)
 status: v0.1 (2026-07-28) — walkthrough 부재로 제1부 법리를 본 명세에서 저술함. 법률 검토(보경) 필요.

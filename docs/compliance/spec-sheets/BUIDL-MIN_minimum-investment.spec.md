@@ -1,6 +1,6 @@
 ---
 type: requirement-spec
-project: RWA DEX (Giwa) · corner-store
+project: RWA DEX · corner-store
 element-id: BUIDL-MIN
 element-name: Minimum Investment Threshold (최소 투자금 한도 · 데모 프로파일)
 status: v0.1 (2026-07-28) — walkthrough 부재. 데모 프로파일 규칙(상업적 fund-terms 성격). 법적 성격 규명은 검토 필요.
@@ -21,7 +21,7 @@ tags: [requirement-spec, BUIDL-MIN, minimum-investment, demo-profile, new-elemen
 
 # BUIDL-MIN Minimum Investment Threshold — 요구사항 명세서
 
-> **저술 지위·데모 성격 고지.** 본 부품은 대응 walkthrough가 없으며, 컨트랙트 `BuidlMinimumInvestment.sol`은 개발팀이 Giwa MVP 데모 프로파일용으로 선반영한 것이다. 컨트랙트 NatSpec이 명시하듯 **본 부품은 실제 BlackRock/Securitize BUIDL 토큰이 본 요소를 통해 연동될 수 있다는 주장을 하지 아니하며**, 공개된 5백만 달러 최소 투자금 사실을 1달러 순자산가치(NAV) 단위로 환산하여 테스트 발행 규칙으로 모델링한 것이다. 최소 투자금 한도는 본질적으로 발행·펀드 조건(상업적 term)으로서 특정 증권법 조문의 요건이 아니므로, **제1부는 그 상업적 조건의 후보 규범적 맥락을 1차 저술한 것**이며 법적 성격 규명은 검토를 요한다(제4절). 본 부품은 Element Pool Freeze v1(ADR-004)에 포함되지 아니하였으므로 신규 등재 절차를 요한다.
+> **저술 지위·데모 성격 고지.** 본 부품은 대응 walkthrough가 없으며, 컨트랙트 `BuidlMinimumInvestment.sol`은 개발팀이 MVP 데모 프로파일용으로 선반영한 것이다. 컨트랙트 NatSpec이 명시하듯 **본 부품은 실제 BlackRock/Securitize BUIDL 토큰이 본 요소를 통해 연동될 수 있다는 주장을 하지 아니하며**, 공개된 5백만 달러 최소 투자금 사실을 1달러 순자산가치(NAV) 단위로 환산하여 테스트 발행 규칙으로 모델링한 것이다. 최소 투자금 한도는 본질적으로 발행·펀드 조건(상업적 term)으로서 특정 증권법 조문의 요건이 아니므로, **제1부는 그 상업적 조건의 후보 규범적 맥락을 1차 저술한 것**이며 법적 성격 규명은 검토를 요한다(제4절). 본 부품은 Element Pool Freeze v1(ADR-004)에 포함되지 아니하였으므로 신규 등재 절차를 요한다.
 
 본 문서는 컴플라이언스 부품 BUIDL-MIN(최소 투자금 한도)의 요구사항 명세서이다. **제1부**는 본 부품이 강제하는 조건의 후보 맥락과 검토 쟁점을, **제2부**는 실장된 컨트랙트 `BuidlMinimumInvestment.sol`을 기준으로 한 구현 명세를 규정한다.
 

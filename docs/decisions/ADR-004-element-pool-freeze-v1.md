@@ -59,7 +59,7 @@
 
 ## 5. 열린 질문 / 동결의 한계
 
-- **설계 blind-spot sweep(06-17)**: privacy 외에 설계 영향 영역 6건(L2 substrate·업그레이드 거버넌스·MEV·oracle·composability·기업행위)을 전수 스캔 → **모두 *부품 목록을 바꾸지 않는* Phase-1 리스크**로 확인(freeze 무관). 등록부 §2에 추적 등록. **L2/Giwa substrate**는 deep-dive 1순위 권고(전용 분석 부재).
+- **설계 blind-spot sweep(06-17)**: privacy 외에 설계 영향 영역 6건(L2 substrate·업그레이드 거버넌스·MEV·oracle·composability·기업행위)을 전수 스캔 → **모두 *부품 목록을 바꾸지 않는* Phase-1 리스크**로 확인(freeze 무관). 등록부 §2에 추적 등록. **L2 substrate**는 deep-dive 1순위 권고(전용 분석 부재).
 - **§4-나 팀 결정 5건**(매수금지명단 governance·만료자 배당·긴급정지 multisig·custody/15c3-3·flag SLA)은 다음 회의 안건 — Phase 1 *구현* 중 병행.
 - **Unfreeze process**: 부품 추가·재분류는 노트 06 update-process(거버넌스 심사)를 통해서만.
 

@@ -127,7 +127,7 @@ graph LR
     CTR --> ER2
 ```
 
-T-REX Factory로 발행 측 컨트랙트 5개를 트랜잭션 한 번에 배포. GIWA가 EVM 호환이므로 어댑터 없이 그대로 사용.
+T-REX Factory로 발행 측 컨트랙트 5개를 트랜잭션 한 번에 배포. 대상 L2가 EVM 호환이므로 어댑터 없이 그대로 사용.
 
 | ERC-3643 발행 측               | Corner Store 거래 측                                 |
 | ------------------------------ | ---------------------------------------------------- |
@@ -182,7 +182,7 @@ graph LR
 
 **Uniswap v4 — 보류**
 
-`beforeSwap` 훅에 Recipe 로직을 삽입할 수 있어 아키텍처적으로 가장 이상적. compliance가 AMM 내부에 native하게 통합되고, user의 별도 approve도 필요 없어짐. 단, 2027년 6월까지 BUSL 라이선스로 상업적 fork 불가. GIWA에 v4가 먼저 배포되어 있어야 훅 방식도 사용 가능. 현시점에서 조건이 충족되지 않음.
+`beforeSwap` 훅에 Recipe 로직을 삽입할 수 있어 아키텍처적으로 가장 이상적. compliance가 AMM 내부에 native하게 통합되고, user의 별도 approve도 필요 없어짐. 단, 2027년 6월까지 BUSL 라이선스로 상업적 fork 불가. 대상 체인에 v4가 먼저 배포되어 있어야 훅 방식도 사용 가능. 현시점에서 조건이 충족되지 않음.
 
 **Algebra Integral — 차선**
 
@@ -642,7 +642,7 @@ contracts/
 
 ### 만들 것
 
-- GIWA 테스트넷에 Uniswap v3 fork DEX 배포
+- 공개 테스트넷에 Uniswap v3 fork DEX 배포
 - CornerStoreFactory (일반 pool + RWA pool 단일 진입점, Pool 배포 + Recipe 할당 자동화)
 - ComplianceRouter (early exit 패턴 포함)
 - TokenRecipeMapping, RecipeRegistry, ElementRegistry
@@ -666,7 +666,7 @@ contracts/
 
 | 항목         | 선택                                     |
 | ------------ | ---------------------------------------- |
-| 체인         | GIWA (OP Stack L2, EVM 호환)             |
+| 체인         | OP Stack L2 (EVM 호환)                   |
 | DEX 코어     | Uniswap v3 fork                          |
 | 컴플라이언스 | Corner Store (직접 구현)                 |
 | 신원/ID      | ERC-3643 · ONCHAINID (재사용)            |

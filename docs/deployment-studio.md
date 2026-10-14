@@ -46,11 +46,11 @@ integrator's runtime; they do not select different Solidity stacks:
 - `existing-backend` keeps an integrator's API, authentication, database and
   deployment boundary while binding Corner Store module capabilities.
 
-The network selector contains local, public testnet, Arbitrum and organization
-EVM examples such as GIWA. A preset is a configuration aid, not a claim that a
+The network selector contains local, public testnet, Arbitrum and custom
+organization EVM options. A preset is a configuration aid, not a claim that a
 production chain has been certified. Direct Studio broadcast is hard-limited
 to the Anvil demo profile plus the operator RPC allowlist; changing the runtime
-network setting cannot enable Arbitrum, GIWA or another production target.
+network setting cannot enable Arbitrum or another production target.
 Every non-Anvil target remains configuration and dry-run review only.
 
 The `operator`, `investor`, `maker` and governance fields are role labels in the

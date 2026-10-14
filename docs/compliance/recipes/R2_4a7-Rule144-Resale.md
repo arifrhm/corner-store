@@ -2,7 +2,7 @@
 type: recipe-requirement-spec
 recipe-id: R2
 recipe-name: §4(a)(7)·Rule 144 Resale
-project: RWA DEX (Giwa) · corner-store
+project: RWA DEX · corner-store
 status: v2.0 (2026-07-28) — 2부 구성(제1부 법률논증 산문 + 제2부 목표 규격). 전용 Recipe 컨트랙트 미구현(target spec).
 substance-sot: "승준 recipe walkthrough — R2_4a7-Rule144-Resale.md v1.0 (2026-06-17, 조문별 삼단논법·경로 OR). 보경 recipe 검토본 없음 — 법률 검토 필요."
 implements: "전용 컨트랙트 미구현 — 목표 규격. 경로 라우팅은 Element C-00(재판매 경로 선택)에 의존."

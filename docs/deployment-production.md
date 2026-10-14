@@ -253,7 +253,7 @@ lane contains only new immutable Element/Recipe registrations and
 by the audit checkpoint. Existing venue, maker and signer activation is not
 silently replayed. The plan reports parameter byte count, exact Manifest calldata
 size and the worst-case calldata-only gas bound; this is not an execution-gas or
-GIWA fee quote.
+target network fee quote.
 
 ```sh
 corner-store production-onboarding-plan corner-store.production-policy-update.json \

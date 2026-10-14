@@ -11,7 +11,7 @@
 ### Adopted Product Direction
 
 - 주 제품은 DEX-level compliance 표준과 Solidity SDK다.
-- Corner Store는 Giwa 위에서 SDK를 증명하는 reference DEX/execution system이다.
+- Corner Store는 EVM L2 위에서 SDK를 증명하는 reference DEX/execution system이다.
 - SDK는 정책 등록을 담당하는 Compliance Core와 venue 등록을 담당하는 Execution
   Integration Kit의 두 확장 축을 제공한다.
 - 거래 측 compliance는 Element, Recipe, Manifest, Operator의 이름 기반 4-Layer다.

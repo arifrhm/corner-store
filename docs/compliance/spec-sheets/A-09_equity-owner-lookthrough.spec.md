@@ -1,6 +1,6 @@
 ---
 type: requirement-spec
-project: RWA DEX (Giwa) · corner-store
+project: RWA DEX · corner-store
 element-id: A-09
 element-name: Equity Owner Look-Through (지분 소유자 재귀 look-through)
 status: v1.0 (2026-07-22) — 보경 walkthrough 기반. Part II는 실장 컨트랙트(EquityOwnerLookThrough.sol) 기준.

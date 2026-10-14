@@ -1,6 +1,6 @@
 ---
 type: requirement-spec
-project: RWA DEX (Giwa) · corner-store
+project: RWA DEX · corner-store
 element-id: B-03
 element-name: Transfer Restriction Metadata (이전제한 메타데이터)
 status: v1.0 (2026-07-22) — 보경 walkthrough 기반. Part II는 실장 컨트랙트(TransferRestrictionMetadata.sol) 기준.

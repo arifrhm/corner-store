@@ -1,6 +1,6 @@
 ---
 type: requirement-spec
-project: RWA DEX (Giwa) · corner-store
+project: RWA DEX · corner-store
 element-id: C-01
 element-name: Holding Period (보유기간)
 status: v1.0 (2026-07-22) — 보경 walkthrough 재작성본. Part II는 실장 컨트랙트(Lockup.sol, 현재 skeleton) 기준. v0.1(승준 staging 기반) 대체.

@@ -53,22 +53,22 @@ nonce 소비와 compliance evaluation 전에 세 범위를 모두 검사한다. 
 
 ## 3. Sequencer outage / censorship 대응
 
-GIWA는 단일 sequencer 구조다 (상세는
-[`giwa-chain-semantics.md`](./giwa-chain-semantics.md) 참조). sequencer가 멈추거나
-특정 트랜잭션을 censorship하는 상황은 아래 절차로 대응한다.
+OP Stack 계열 L2는 일반적으로 단일 sequencer 구조다 (상세는
+[`op-stack-chain-semantics.md`](./op-stack-chain-semantics.md) 참조). sequencer가
+멈추거나 특정 트랜잭션을 censorship하는 상황은 아래 절차로 대응한다.
 
 1. `latest`와 `safe` block tag의 진행을 비교해 sequencer 정지를 감지한다.
-   `latest` block height가 정상 block time(1초)보다 크게 느려지거나 멈추면
-   sequencer 장애로 간주한다. `safe`가 계속 진행 중이면 이미 L1에 제출된 batch는
-   정상적으로 derive되고 있다는 뜻이며 sequencer 자체만 정지한 상태다.
+   `latest` block height가 대상 체인의 정상 block time보다 크게 느려지거나
+   멈추면 sequencer 장애로 간주한다. `safe`가 계속 진행 중이면 이미 L1에 제출된
+   batch는 정상적으로 derive되고 있다는 뜻이며 sequencer 자체만 정지한 상태다.
 2. 이 문서의 pause lever (`OperatorRegistry.setGlobalPaused`,
    `setVenueSuspended`, `setAssetSuspended` 등)는 모두 L2 트랜잭션이다. sequencer가
    내려가 있으면 이 lever는 **사용할 수 없다.** sequencer 장애 자체가 containment
    실행을 막을 수 있음을 미리 인지한다.
 3. sequencer가 없어도 L1->L2 방향은 forced inclusion (escape hatch)으로 유지된다.
    L1의 `OptimismPortal`에서 `depositTransaction()`을 직접 호출하면 늦어도
-   sequencing window (`seq_window_size`, 약 12시간) 안에는 derivation pipeline이
-   해당 트랜잭션을 포함해야 한다.
+   sequencing window (대상 체인 rollup config의 `seq_window_size`) 안에는
+   derivation pipeline이 해당 트랜잭션을 포함해야 한다.
 4. **OPEN ITEM**: forced inclusion 호출은 L2에서 address-aliased 계정
    (L1 주소 + `0x1111000000000000000000000000000000001111`)으로 실행된다. 즉 L2
    operator EOA가 보유한 pause/suspend 권한은, 그 aliased 주소가 별도로
@@ -76,13 +76,13 @@ GIWA는 단일 sequencer 구조다 (상세는
    주소를 사전에 operator로 등록해 둘지는 아직 결정되지 않았다. 결정 전까지는
    sequencer 장애 중 forced path로 containment lever를 행사할 수 없다고
    가정한다.
-5. L2->L1 출금 경로는 이 sequencer 장애와 별개로 단일 permissioned
-   proposer/challenger keypair에 의존한다 (fault proof가 permissioned-only
-   모드로 운영됨). 해당 키가 없으면 sequencer가 복구돼도 출금을 finalize할 수
-   없다.
+5. fault proof가 permissioned-only 모드로 운영되는 체인에서는 L2->L1 출금
+   경로가 이 sequencer 장애와 별개로 단일 permissioned proposer/challenger
+   keypair에 의존한다. 해당 키가 없으면 sequencer가 복구돼도 출금을 finalize할
+   수 없다.
 
-상세 배경(확정 단계 관측치, escape hatch 한계, fault proof 현황)은
-[`giwa-chain-semantics.md`](./giwa-chain-semantics.md)를 참조한다.
+상세 배경(확정 단계 tag, escape hatch 한계, fault proof 상태 확인 방법)은
+[`op-stack-chain-semantics.md`](./op-stack-chain-semantics.md)를 참조한다.
 
 ## 4. Evidence preservation
 
@@ -138,7 +138,7 @@ pause → 신규 Element/Recipe → delayed Manifest update → checkpoint → d
 
 관련 문서:
 
-- [`giwa-chain-semantics.md`](./giwa-chain-semantics.md)
+- [`op-stack-chain-semantics.md`](./op-stack-chain-semantics.md)
 - [`element-emergency-replacement.md`](./element-emergency-replacement.md)
 - [`../security.md`](../security.md)
 - [`../rfq-threat-model.md`](../rfq-threat-model.md)

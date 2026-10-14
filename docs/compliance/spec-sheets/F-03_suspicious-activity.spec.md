@@ -1,6 +1,6 @@
 ---
 type: requirement-spec
-project: RWA DEX (Giwa) · corner-store
+project: RWA DEX · corner-store
 element-id: F-03
 element-name: Suspicious Activity Monitoring (사기·의심거래 감시 / SAR)
 status: v1.0 (2026-07-22) — 보경 walkthrough 기반. 전용 컨트랙트 미구현 → Part II는 목표 규격.

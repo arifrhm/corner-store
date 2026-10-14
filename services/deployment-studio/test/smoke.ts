@@ -433,7 +433,7 @@ async function main(): Promise<void> {
     'id="runProductionPreflight"', 'id="generateProductionPlan"', 'id="exportProductionPlan"',
     'id="languageToggle"',
     "Runtime constraints", "Demo fixtures", "Manual evidence checklist",
-    "Arbitrum One · production plan only", "GIWA / organization EVM · plan only",
+    "Arbitrum One · production plan only",
     "Production core", "preflight → plan"
   ]) {
     if (!html.includes(marker)) throw new Error(`studio UI marker missing: ${marker}`);

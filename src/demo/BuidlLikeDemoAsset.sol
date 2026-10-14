@@ -11,7 +11,7 @@ import {
 } from "../types/ComplianceTypes.sol";
 
 /// @title BuidlLikeDemoAsset
-/// @notice Giwa MVP demo profile for a local BUIDL-like ERC-3643 asset.
+/// @notice MVP demo profile for a local BUIDL-like ERC-3643 asset.
 ///
 /// This intentionally does NOT subclass or fork the ERC-3643 token. The token
 /// remains the standard T-REX Token; this profile packages the asset-specific

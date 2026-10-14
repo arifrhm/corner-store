@@ -7,7 +7,7 @@
 | Channel | [G] GitHub (ADR) |
 | Scope | freeze 설계 불변식 (지금 ZK 구현 X · 인터페이스만 잠금) |
 | Related | 근거: `프라이버시-ZK-적용전략` / methodology §5.4 · §6.7 / 노트 35(규제수용 철학 — 검증↔프라이버시 축·ZK 다리) / ADR-001(F-04) · ADR-002(OD-CI-5) |
-| Follow-up | 개발팀: Giwa ZK verifier·confidential tx 역량 확인 · 변호사: Q-Privacy-1 (신용정보법·개인정보법) |
+| Follow-up | 개발팀: 대상 L2 체인의 ZK verifier·confidential tx 역량 확인 · 변호사: Q-Privacy-1 (신용정보법·개인정보법) |
 
 > **첫 문장 요약.** ZK를 *지금 구현하지는 않는다.* 다만 나중에 ZK를 *부품을 깨지 않고* 끼울 수 있도록, freeze에 **설계 불변식 3개**를 박는다.
 
@@ -54,14 +54,14 @@
 
 **부담/비용** — 인터페이스 추상화는 *설계 규율*을 요구(개발팀이 부품을 짤 때 평문 의존을 피해야). freeze 전 개발팀과 인터페이스 형태 합의 필요.
 
-**따라오는 작업** — 개발팀: Giwa(EVM L2)에서 ZK verifier 가스·confidential tx 지원 확인. 시범: ②부터 selective-disclosure VC. 변호사: Q-Privacy-1.
+**따라오는 작업** — 개발팀: 대상 L2에서 ZK verifier 가스·confidential tx 지원 확인. 시범: ②부터 selective-disclosure VC. 변호사: Q-Privacy-1.
 
 ---
 
 ## 5. 열린 질문 (Open Questions)
 
-- **③ 거래 그래프 방향** — (a) 수용 / (b) confidential amounts 먼저 / (c) shielded pool. *지금은 열어두고 인터페이스만 ready* (개발팀 Giwa 역량 확인 후 결정). 보수적 default.
-- **Giwa ZK 역량** — verifier 컨트랙트 가스 비용·confidential tx/precompile 지원·shielded pool 가능성 (개발팀 Q).
+- **③ 거래 그래프 방향** — (a) 수용 / (b) confidential amounts 먼저 / (c) shielded pool. *지금은 열어두고 인터페이스만 ready* (개발팀의 대상 L2 역량 확인 후 결정). 보수적 default.
+- **대상 L2 체인의 ZK 역량** — verifier 컨트랙트 가스 비용·confidential tx/precompile 지원·shielded pool 가능성 (개발팀 Q).
 - **Q-Privacy-1 (변호사)** — 온체인 enum·주소-신원 바인딩이 신용정보법상 *개인신용정보*·개인정보보호법상 *개인정보*에 해당? 삭제권·파기의무 적용?
 
 ---
