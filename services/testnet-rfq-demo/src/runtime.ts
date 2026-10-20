@@ -15,7 +15,7 @@ import {
   SignedRFQQuote,
   createRFQService
 } from "../../rfq/src";
-import {TestnetDemoConfig} from "./config";
+import {TestnetDemoConfig, WalletNetworkMetadata} from "./config";
 import {BlockTiming, encodeReasonCode, explainBlockedTrade, reasonName} from "./explain";
 import {PacedJsonRpcProvider} from "./rpc";
 
@@ -207,15 +207,7 @@ export class TestnetRfqRuntime {
         explorerUrl: this.config.explorerUrl ?? null,
         verifiedAtStartup: true
       },
-      walletNetwork: artifact.chainId === 10143
-        ? {
-            name: "Monad Testnet",
-            chainId: 10143,
-            rpcUrl: "https://testnet-rpc.monad.xyz",
-            nativeCurrency: "MON",
-            explorerUrl: "https://testnet.monadexplorer.com"
-          }
-        : null,
+      walletNetwork: publicWalletNetwork(this.config),
       contracts: {
         router: artifact.router,
         engine: artifact.engine,
@@ -423,6 +415,10 @@ export class TestnetRfqRuntime {
       this.quote.decimals
     ).calculate(BigInt(amountIn), side).toString();
   }
+}
+
+export function publicWalletNetwork(config: TestnetDemoConfig): WalletNetworkMetadata | null {
+  return config.walletNetwork ?? null;
 }
 
 async function verifyDeployment(config: TestnetDemoConfig, provider: JsonRpcProvider): Promise<void> {
