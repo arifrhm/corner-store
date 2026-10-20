@@ -86,6 +86,10 @@ active
 - Fixture acquisition snapshots are valid for 30 days from deployment, until about
   2026-11-07 17:11 KST. After that, sell-side checks that read the snapshot are expected
   to report stale evidence until the snapshots are refreshed or the stack is redeployed.
+  `scripts/refresh-testnet-evidence.sh` provides a dry-run-first operator path limited
+  to the artifact's existing fixture participants and existing QP/acquisition setters.
+  Broadcast requires an artifact-operator signer and is followed by a separate exact
+  read-only verification pass. It never changes the deployment artifact.
 - `scripts/deploy-testnet-rfq.sh` simulation supports macOS Bash 3.2 with `set -u`;
   its regression gate also preserves broadcast and verification flag construction.
 - An earlier 2026-10-07 Monad deployment from `3aa4af5` (`hackathon-testnet-rfq`,

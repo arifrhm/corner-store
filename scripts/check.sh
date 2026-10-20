@@ -90,6 +90,9 @@ node scripts/check-testnet-reason-parity.mjs
 echo "==> Checking public-testnet deployment wrapper arguments"
 scripts/test-deploy-testnet-rfq.sh
 
+echo "==> Checking public-testnet evidence refresh arguments"
+scripts/test-refresh-testnet-evidence.sh
+
 echo "==> Running public-testnet and Monad URL rehearsal smoke test"
 node scripts/test-rehearse-monad-judge-url.mjs
 

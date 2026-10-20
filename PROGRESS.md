@@ -71,6 +71,12 @@ source of truth로 사용한다.
   장면은 별도로 보고한다. 브라우저에서 내려받은 settlement evidence를 주면 live
   deployment/source/contracts/participant/token과 transaction block·측정 시간을 함께
   대조하므로 잘못된 URL이나 다른 배포의 증거를 제출 전에 거절한다.
+- public-testnet fixture의 기존 participant에 한정된 evidence refresh 도구를 추가했다.
+  QP는 `qualified` 또는 `clear`, acquisition은 기존 `VALID` 또는
+  `LINEAGE_BROKEN` 의미와 모든 timestamp/sourceRef를 명시해야 한다. 기본은 dry-run이며,
+  broadcast는 artifact operator와 일치하는 외부 Foundry signer를 요구하고 순차 제출 뒤
+  별도 read-only verifier로 정확한 claim/snapshot을 확인한다. artifact, identity,
+  inventory, approval과 policy는 변경하지 않는다.
 - 임시 Anvil 실제 배포에서 Solidity verifier와 Node startup attestation을 통과했고,
   wiring을 바꾼 artifact는 listen 전에 거절되며 `/health`·API 공통 budget이 429를
   반환함을 확인했다. pinned Foundry 1.7.1 전체 `scripts/check.sh`도 Foundry 960/960,
