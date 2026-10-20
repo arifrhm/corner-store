@@ -374,6 +374,20 @@ the backend's configured RPC URL remains private and is never returned. The
 quick-start action can add or switch the browser wallet using only those public
 network values. Changing the selected account or chain clears the previous
 pre-check, signed quote and signer state before another scenario can run.
+For another public testnet, wallet setup remains disabled unless the operator
+sets all four public values below. They are validated independently from the
+private runtime RPC and are bound to the artifact chain ID:
+
+```sh
+export CORNER_STORE_TESTNET_WALLET_NETWORK_NAME="<public network name>"
+export CORNER_STORE_TESTNET_WALLET_RPC_URL="https://<credential-free-public-rpc>"
+export CORNER_STORE_TESTNET_WALLET_NATIVE_CURRENCY="<symbol>"
+export CORNER_STORE_TESTNET_WALLET_EXPLORER_URL="https://<public-explorer>"
+```
+
+Partial metadata, credential-bearing URLs and unsupported URL schemes fail
+closed. The runtime never derives public wallet settings from
+`CORNER_STORE_TESTNET_RPC_URL`, which may contain operator credentials.
 After a successful Router settlement, download the generated JSON evidence. It
 binds the deployment/source commit, chain, public wallet and contract addresses,
 amounts, transaction hash, block and measured submission-to-confirmation time.
@@ -433,10 +447,23 @@ Before sharing or recording the judge URL, run the repository rehearsal gate:
 node scripts/rehearse-monad-judge-url.mjs --url https://<judge-host>
 ```
 
-It fails closed when the public endpoint is not HTTPS, redirects off-origin,
-does not serve the expected security headers, is not bound to verified Monad
-chain `10143`, lacks active Maker/Manifest/inventory readiness, or omits one of
-the three required scenes (success, qualification rejection and holding period).
+The Monad command is a strict compatibility wrapper fixed to chain `10143` and
+the exact Monad Testnet wallet metadata. For another hosted public-testnet
+surface, provide the expected artifact chain and network name explicitly:
+
+```sh
+node scripts/rehearse-public-testnet-url.mjs \
+  --url https://<hosted-url> \
+  --chain-id <chain-id> \
+  --network-name "<public network name>" \
+  --evidence /path/to/downloaded-evidence.json
+```
+
+Both commands fail closed when the public endpoint is not HTTPS, redirects
+off-origin, does not serve the expected security headers, does not match the
+expected chain and network metadata, lacks active Maker/Manifest/inventory
+readiness, or omits one of the required scenes. The Monad wrapper additionally
+requires chain `10143` and the exact published Monad Testnet wallet settings.
 The claim-expiry scene is reported separately because it is the first scenario
 to cut if the submission schedule slips. After one successful settlement, rerun
 with `--evidence <downloaded-json>` to bind the measured transaction record to

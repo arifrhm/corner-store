@@ -7,6 +7,7 @@ import {tmpdir} from "node:os";
 import {join} from "node:path";
 
 import {rehearseJudgeUrl} from "./rehearse-monad-judge-url.mjs";
+import {rehearsePublicTestnetUrl} from "./rehearse-public-testnet-url.mjs";
 
 const address = (digit) => `0x${digit.repeat(40)}`;
 const state = {
@@ -16,7 +17,13 @@ const state = {
     chainId: 10143,
     verifiedAtStartup: true
   },
-  walletNetwork: {name: "Monad Testnet", chainId: 10143},
+  walletNetwork: {
+    name: "Monad Testnet",
+    chainId: 10143,
+    rpcUrl: "https://testnet-rpc.monad.xyz",
+    nativeCurrency: "MON",
+    explorerUrl: "https://testnet.monadexplorer.com"
+  },
   contracts: {
     router: address("1"),
     rfqAdapter: address("2"),
@@ -120,8 +127,75 @@ try {
   await assert.rejects(() => rehearseJudgeUrl(url), /state chainId must be 10143/);
   state.deployment.chainId = 10143;
 
+  state.walletNetwork.rpcUrl = "https://wrong-rpc.example.invalid";
+  await assert.rejects(() => rehearseJudgeUrl(url), /wallet network rpcUrl is invalid/);
+  state.walletNetwork.rpcUrl = "https://testnet-rpc.monad.xyz";
+
+  const genericChainId = 43210;
+  const genericNetworkName = "Operator Testnet";
+  state.deployment.chainId = genericChainId;
+  state.walletNetwork = {
+    name: genericNetworkName,
+    chainId: genericChainId,
+    rpcUrl: "https://public-rpc.example.invalid",
+    nativeCurrency: "TST",
+    explorerUrl: "https://explorer.example.invalid"
+  };
+  await writeFile(evidencePath, JSON.stringify({
+    schemaVersion: 1,
+    kind: "corner-store-public-testnet-rfq-settlement",
+    deploymentId: state.deployment.deploymentId,
+    sourceCommit: state.deployment.sourceCommit,
+    chainId: genericChainId,
+    router: state.contracts.router,
+    rfqAdapter: state.contracts.rfqAdapter,
+    wallet: state.participants.eligibleInvestorA,
+    side: "buy",
+    tokenIn: state.tokens.quote.address,
+    tokenOut: state.tokens.rwa.address,
+    amountIn: "100",
+    amountOut: "10",
+    transactionHash: `0x${"c".repeat(64)}`,
+    blockNumber: 199,
+    submittedAt: "2033-05-18T03:33:20.000Z",
+    confirmedAt: "2033-05-18T03:33:21.250Z",
+    confirmationMs: 1250
+  }));
+  const generic = await rehearsePublicTestnetUrl(url, {
+    expectedChainId: genericChainId,
+    expectedNetworkName: genericNetworkName,
+    evidencePath
+  });
+  assert.equal(generic.ready, true);
+  assert.equal(generic.chainId, genericChainId);
+  assert.equal(generic.evidenceTransaction, `0x${"c".repeat(64)}`);
+  assert(generic.checks.includes("public-testnet-deployment-and-readiness"));
+
+  await assert.rejects(
+    () => rehearsePublicTestnetUrl(url, {
+      expectedChainId: genericChainId + 1,
+      expectedNetworkName: genericNetworkName
+    }),
+    /state chainId must be 43211/
+  );
+  await assert.rejects(
+    () => rehearsePublicTestnetUrl(url, {
+      expectedChainId: genericChainId,
+      expectedNetworkName: "Wrong Network"
+    }),
+    /wallet network name must be Wrong Network/
+  );
+  state.walletNetwork.rpcUrl = "https://user:secret@public-rpc.example.invalid";
+  await assert.rejects(
+    () => rehearsePublicTestnetUrl(url, {
+      expectedChainId: genericChainId,
+      expectedNetworkName: genericNetworkName
+    }),
+    /wallet RPC URL must not contain credentials/
+  );
+
   await assert.rejects(() => rehearseJudgeUrl("http://example.com"), /public judge URL must use HTTPS/);
-  console.log("Monad judge URL rehearsal smoke ok");
+  console.log("Public-testnet and Monad judge URL rehearsal smoke ok");
 } finally {
   await new Promise((resolve, reject) => server.close((error) => error ? reject(error) : resolve()));
   await rm(directory, {recursive: true, force: true});

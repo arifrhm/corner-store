@@ -63,7 +63,24 @@ export interface TestnetDemoConfig {
   apiRequestsPerMinute: number;
   quoteRequestsPerMinute: number;
   rpcRequestsPerSecond: number;
+  walletNetwork?: WalletNetworkMetadata;
 }
+
+export interface WalletNetworkMetadata {
+  name: string;
+  chainId: number;
+  rpcUrl: string;
+  nativeCurrency: string;
+  explorerUrl: string;
+}
+
+const MONAD_TESTNET_WALLET_NETWORK: WalletNetworkMetadata = {
+  name: "Monad Testnet",
+  chainId: 10143,
+  rpcUrl: "https://testnet-rpc.monad.xyz",
+  nativeCurrency: "MON",
+  explorerUrl: "https://testnet.monadexplorer.com"
+};
 
 export function loadConfig(env = process.env): TestnetDemoConfig {
   const artifactPath = resolve(env.CORNER_STORE_TESTNET_ARTIFACT ?? "");
@@ -82,6 +99,7 @@ export function loadConfig(env = process.env): TestnetDemoConfig {
       "non-loopback demo host requires CORNER_STORE_TESTNET_PUBLIC_ACKNOWLEDGEMENT=hackathon-testnet-only"
     );
   }
+  const walletNetwork = loadWalletNetwork(env, artifact.chainId);
 
   return {
     host,
@@ -113,8 +131,45 @@ export function loadConfig(env = process.env): TestnetDemoConfig {
       10,
       1_000,
       "RPC requests per second"
-    )
+    ),
+    ...(walletNetwork ? {walletNetwork} : {})
   };
+}
+
+function loadWalletNetwork(env: NodeJS.ProcessEnv, chainId: number): WalletNetworkMetadata | undefined {
+  const values = {
+    name: env.CORNER_STORE_TESTNET_WALLET_NETWORK_NAME,
+    rpcUrl: env.CORNER_STORE_TESTNET_WALLET_RPC_URL,
+    nativeCurrency: env.CORNER_STORE_TESTNET_WALLET_NATIVE_CURRENCY,
+    explorerUrl: env.CORNER_STORE_TESTNET_WALLET_EXPLORER_URL
+  };
+  const supplied = Object.values(values).filter((value) => value !== undefined).length;
+  if (supplied !== 0 && supplied !== Object.keys(values).length) {
+    throw new Error("public wallet network metadata must set name, RPC URL, native currency and explorer URL together");
+  }
+
+  let explicit: WalletNetworkMetadata | undefined;
+  if (supplied > 0) {
+    explicit = {
+      name: boundedText(values.name, 100, "public wallet network name"),
+      chainId,
+      rpcUrl: publicHttpUrl(values.rpcUrl, "public wallet RPC URL"),
+      nativeCurrency: boundedText(values.nativeCurrency, 16, "public wallet native currency"),
+      explorerUrl: publicHttpUrl(values.explorerUrl, "public wallet explorer URL").replace(/\/+$/, "")
+    };
+  }
+
+  if (chainId !== MONAD_TESTNET_WALLET_NETWORK.chainId) return explicit;
+  if (explicit && (
+    explicit.name !== MONAD_TESTNET_WALLET_NETWORK.name
+      || explicit.chainId !== MONAD_TESTNET_WALLET_NETWORK.chainId
+      || explicit.rpcUrl.replace(/\/+$/, "") !== MONAD_TESTNET_WALLET_NETWORK.rpcUrl
+      || explicit.nativeCurrency !== MONAD_TESTNET_WALLET_NETWORK.nativeCurrency
+      || explicit.explorerUrl !== MONAD_TESTNET_WALLET_NETWORK.explorerUrl
+  )) {
+    throw new Error("chain 10143 public wallet network metadata must match Monad Testnet");
+  }
+  return MONAD_TESTNET_WALLET_NETWORK;
 }
 
 function validateArtifact(value: unknown): PublicDeploymentArtifact {
@@ -226,6 +281,29 @@ function httpUrl(value: string, name: string): string {
     throw new Error(`${name} must use http or https`);
   }
   return parsed.toString();
+}
+
+function publicHttpUrl(value: string | undefined, name: string): string {
+  const text = boundedText(value, 2_048, name);
+  let parsed: URL;
+  try {
+    parsed = new URL(text);
+  } catch {
+    throw new Error(`${name} must be a valid URL`);
+  }
+  if (parsed.protocol !== "http:" && parsed.protocol !== "https:") {
+    throw new Error(`${name} must use http or https`);
+  }
+  if (parsed.username || parsed.password) throw new Error(`${name} must not contain credentials`);
+  return parsed.toString();
+}
+
+function boundedText(value: string | undefined, maximum: number, name: string): string {
+  if (value === undefined || value.length === 0 || value.trim() !== value) {
+    throw new Error(`${name} must be a nonempty string without surrounding whitespace`);
+  }
+  if (value.length > maximum) throw new Error(`${name} must be at most ${maximum} characters`);
+  return value;
 }
 
 function isRecord(value: unknown): value is Record<string, unknown> {

@@ -9,7 +9,7 @@ import {JsonRpcProvider, Wallet} from "ethers";
 import {loadConfig} from "../src/config";
 import {encodeReasonCode, explainBlockedTrade} from "../src/explain";
 import {PacedJsonRpcProvider} from "../src/rpc";
-import {TestnetRfqRuntime, buildRouterRequest} from "../src/runtime";
+import {TestnetRfqRuntime, buildRouterRequest, publicWalletNetwork} from "../src/runtime";
 import {InMemoryRateLimiter, ServiceUnavailableError, classifyPublicError, startServer} from "../src/server";
 
 const maker = Wallet.createRandom();
@@ -73,6 +73,72 @@ assert.equal(config.makerWallet.address, maker.address);
 assert.equal(config.apiRequestsPerMinute, 240);
 assert.equal(config.quoteRequestsPerMinute, 20);
 assert.equal(config.rpcRequestsPerSecond, 10);
+assert.equal(config.walletNetwork, undefined);
+const genericNetworkConfig = loadConfig({
+  CORNER_STORE_TESTNET_ARTIFACT: path,
+  CORNER_STORE_TESTNET_RPC_URL: "https://operator:credential@private-rpc.example.invalid",
+  CORNER_STORE_TESTNET_MAKER_KEY: maker.privateKey,
+  CORNER_STORE_TESTNET_WALLET_NETWORK_NAME: "Operator Testnet",
+  CORNER_STORE_TESTNET_WALLET_RPC_URL: "https://public-rpc.example.invalid",
+  CORNER_STORE_TESTNET_WALLET_NATIVE_CURRENCY: "TST",
+  CORNER_STORE_TESTNET_WALLET_EXPLORER_URL: "https://explorer.example.invalid/"
+});
+assert.deepEqual(publicWalletNetwork(genericNetworkConfig), {
+  name: "Operator Testnet",
+  chainId: 31337,
+  rpcUrl: "https://public-rpc.example.invalid/",
+  nativeCurrency: "TST",
+  explorerUrl: "https://explorer.example.invalid"
+});
+assert.doesNotMatch(JSON.stringify(publicWalletNetwork(genericNetworkConfig)), /operator:credential|private-rpc/);
+assert.throws(
+  () => loadConfig({
+    CORNER_STORE_TESTNET_ARTIFACT: path,
+    CORNER_STORE_TESTNET_RPC_URL: "http://127.0.0.1:8545",
+    CORNER_STORE_TESTNET_MAKER_KEY: maker.privateKey,
+    CORNER_STORE_TESTNET_WALLET_NETWORK_NAME: "Incomplete Testnet"
+  }),
+  /must set name, RPC URL, native currency and explorer URL together/
+);
+assert.throws(
+  () => loadConfig({
+    CORNER_STORE_TESTNET_ARTIFACT: path,
+    CORNER_STORE_TESTNET_RPC_URL: "http://127.0.0.1:8545",
+    CORNER_STORE_TESTNET_MAKER_KEY: maker.privateKey,
+    CORNER_STORE_TESTNET_WALLET_NETWORK_NAME: "Credential Testnet",
+    CORNER_STORE_TESTNET_WALLET_RPC_URL: "https://user:secret@public-rpc.example.invalid",
+    CORNER_STORE_TESTNET_WALLET_NATIVE_CURRENCY: "TST",
+    CORNER_STORE_TESTNET_WALLET_EXPLORER_URL: "https://explorer.example.invalid"
+  }),
+  /public wallet RPC URL must not contain credentials/
+);
+
+const monadArtifactPath = join(dir, "monad-artifact.json");
+writeFileSync(monadArtifactPath, JSON.stringify({...artifact, chainId: 10143}));
+const monadConfig = loadConfig({
+  CORNER_STORE_TESTNET_ARTIFACT: monadArtifactPath,
+  CORNER_STORE_TESTNET_RPC_URL: "http://127.0.0.1:8545",
+  CORNER_STORE_TESTNET_MAKER_KEY: maker.privateKey
+});
+assert.deepEqual(monadConfig.walletNetwork, {
+  name: "Monad Testnet",
+  chainId: 10143,
+  rpcUrl: "https://testnet-rpc.monad.xyz",
+  nativeCurrency: "MON",
+  explorerUrl: "https://testnet.monadexplorer.com"
+});
+assert.throws(
+  () => loadConfig({
+    CORNER_STORE_TESTNET_ARTIFACT: monadArtifactPath,
+    CORNER_STORE_TESTNET_RPC_URL: "http://127.0.0.1:8545",
+    CORNER_STORE_TESTNET_MAKER_KEY: maker.privateKey,
+    CORNER_STORE_TESTNET_WALLET_NETWORK_NAME: "Wrong Monad",
+    CORNER_STORE_TESTNET_WALLET_RPC_URL: "https://testnet-rpc.monad.xyz",
+    CORNER_STORE_TESTNET_WALLET_NATIVE_CURRENCY: "MON",
+    CORNER_STORE_TESTNET_WALLET_EXPLORER_URL: "https://testnet.monadexplorer.com"
+  }),
+  /must match Monad Testnet/
+);
 const fileSecretConfig = loadConfig({
   CORNER_STORE_TESTNET_ARTIFACT: path,
   CORNER_STORE_TESTNET_RPC_URL: "http://127.0.0.1:8545",

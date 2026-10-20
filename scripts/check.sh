@@ -90,7 +90,7 @@ node scripts/check-testnet-reason-parity.mjs
 echo "==> Checking public-testnet deployment wrapper arguments"
 scripts/test-deploy-testnet-rfq.sh
 
-echo "==> Running Monad judge URL rehearsal smoke test"
+echo "==> Running public-testnet and Monad URL rehearsal smoke test"
 node scripts/test-rehearse-monad-judge-url.mjs
 
 echo "==> Running standalone SDK package consumer smoke test"
