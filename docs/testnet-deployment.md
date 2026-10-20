@@ -288,7 +288,40 @@ The verifier fails closed on:
   result does not match the published fixture;
 - missing allowances when requested.
 
-## 8. Explorer Source Verification
+## 8. Refresh Existing Fixture Evidence
+
+An operator may refresh only QP and acquisition evidence for a wallet already
+named in the deployment artifact. The command is a dry-run by default:
+
+```sh
+scripts/refresh-testnet-evidence.sh \
+  --rpc-url "$RPC_URL" \
+  --artifact deployments/public/<deployment-id>-<chain-id>.json \
+  --subject <existing-fixture-wallet> \
+  --qp qualified \
+  --acquisition-status valid \
+  --clock-start <unix-seconds> \
+  --expires-at <future-unix-seconds> \
+  --source-ref 0x<64-hex-characters>
+```
+
+Use `--qp clear` to remove the existing QP claim. Acquisition status is either
+`valid`, with a nonzero clock start that is not in the future, or
+`lineage-broken`, with a zero clock start. Every acquisition refresh requires
+an explicit future expiry and nonzero PII-free `bytes32` source reference.
+
+After reviewing the simulation, add `--broadcast` and exactly one operator
+signer option: `--account`, `--keystore` with an optional `--password-file`, or
+`--ledger`. The wrapper verifies that signer address against the artifact
+operator before mutation. It then broadcasts sequentially and runs a separate
+read-only pass that verifies the exact selected QP claim shape and acquisition
+snapshot fields. The deployment artifact is never modified.
+
+This tool does not register identities or wallets, mint or transfer inventory,
+grant approvals, change policy, or infer qualification from legal or personal
+data. It does not accept raw private keys.
+
+## 9. Explorer Source Verification
 
 If the selected explorer is supported by Foundry, set its API key in the
 environment and add `--verify` to the broadcast command:
@@ -340,7 +373,7 @@ The public-testnet demo runtime that consumes this artifact is maintained as a
 separate integration surface. The local Anvil demo does not silently switch to
 public networks.
 
-## 9. Run the Artifact-bound Browser Demo
+## 10. Run the Artifact-bound Browser Demo
 
 After the public artifact is committed and participant allowances are ready,
 load the same `.env.testnet` and set:
