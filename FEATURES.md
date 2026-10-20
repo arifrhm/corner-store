@@ -86,9 +86,8 @@ active
 - Fixture acquisition snapshots are valid for 30 days from deployment, until about
   2026-11-07 17:11 KST. After that, sell-side checks that read the snapshot are expected
   to report stale evidence until the snapshots are refreshed or the stack is redeployed.
-- `scripts/deploy-testnet-rfq.sh` without `--broadcast` fails on macOS bash 3.2 with
-  `MUTATION_ARGS[@]: unbound variable`, so the simulation ran as the equivalent
-  `forge script` command. `--broadcast` is unaffected.
+- `scripts/deploy-testnet-rfq.sh` simulation supports macOS Bash 3.2 with `set -u`;
+  its regression gate also preserves broadcast and verification flag construction.
 - An earlier 2026-10-07 Monad deployment from `3aa4af5` (`hackathon-testnet-rfq`,
   `bBUIDL`/`tqUSD`, two scenes) is superseded and its record is not published.
 

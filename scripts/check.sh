@@ -87,6 +87,9 @@ echo "==> Running public-testnet RFQ demo build + smoke test"
 echo "==> Checking public-testnet/CLI reason catalog parity"
 node scripts/check-testnet-reason-parity.mjs
 
+echo "==> Checking public-testnet deployment wrapper arguments"
+scripts/test-deploy-testnet-rfq.sh
+
 echo "==> Running Monad judge URL rehearsal smoke test"
 node scripts/test-rehearse-monad-judge-url.mjs
 

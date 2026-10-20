@@ -194,7 +194,7 @@ forge script script/DeployTestnetRFQ.s.sol:DeployTestnetRFQ \
   --chain-id "$CHAIN_ID" \
   --sender "$CORNER_STORE_TESTNET_DEPLOYER" \
   "${SIGNER_ARGS[@]}" \
-  "${MUTATION_ARGS[@]}"
+  ${MUTATION_ARGS[@]+"${MUTATION_ARGS[@]}"}
 
 if [[ "$BROADCAST" -eq 1 ]]; then
   forge script script/VerifyTestnetRFQ.s.sol:VerifyTestnetRFQ \
